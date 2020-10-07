@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<script>
+    function update() {
+        document.getElementById('text').value = infected;
+        document.title = infected + " infected"
+        document.getElementById('ammountAutoClick').innerHTML = "You own " + " coughers";
+    }
+
+    var infected = 0;
+    var autoClick = 0;
+
+    function timer () {
+        infected = infected + autoClick;
+        update()
+    }
+    setInterval(timer, 1000)
+</script>
+<html>
+    <head>
+        <title>
+            The Clicker Game
+        </title>
+    </head>
+<body>
+<a href=# onclick="add()"><img src="Coronavirus.jpg" width="300" height="300"> </a>
+<br><br>
+You have infected
+<input type="text" id="text" disabled style= text-align:center>
+<script>
+    function add() {
+        infected = infected + 1;
+       update()
+    }
+</script>
+people 
+<br><br>
+
+<button><a href="#" onclick="save()">Save</a></button>
+<button><a href="#" onclick="load()">Load</a></button>
+<br><br>
+ 
+<p>Bribe a chinese cougher</p>
+<button><a href="#" onClick="buyAutoClick()">Bribe</a></button>
+<p id="costAutoclick"> infected</p>
+<p id="ammountAutoClick">You have 0 coughers</p>
+<script>
+    function save(){
+        localStorage.setItem("infected", infected);
+
+    }
+    function load(){
+        infected = localStorage.getItem("infected");
+        infected = parseInt(infected);
+        update()
+    }
+    function buyAutoClick(){
+        if (infected >= ((autoClick+1) * 12)) {
+            infected = infected - ((autoClick+1) * 12);
+            autoClick = autoClick + 1;
+            update()
+        }
+    }
+</script>
+</body>
+</html>
